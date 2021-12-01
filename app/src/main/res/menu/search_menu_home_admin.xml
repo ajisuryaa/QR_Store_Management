@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/search"
+        android:icon="@drawable/ic_search_white"
+        android:orderInCategory="1"
+        android:title="Cari"
+        android:tooltipText="Cari barang"
+        app:actionViewClass="android.widget.SearchView"
+        app:showAsAction="always|collapseActionView" />
+    <item
+        android:id="@+id/ha_add_new_material"
+        android:icon="@drawable/ic_add"
+        android:iconTint="#4E4E4E"
+        android:iconTintMode="add"
+        android:title="Tambah Material" />
+
+    <item
+        android:id="@+id/ha_view_employee"
+        android:icon="@drawable/ic_account"
+        android:iconTint="#4E4E4E"
+        android:iconTintMode="add"
+        android:title="Lihat Pegawai" />
+    <item
+        android:id="@+id/ha_view_profile"
+        android:title="Lihat Profil" />
+
+
+</menu>

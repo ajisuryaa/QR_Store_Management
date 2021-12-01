@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.Form_Material_Page">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="10dp">
+
+            <ImageView
+                android:id="@+id/iv_material_photo_fm"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/image_view_style"
+                android:padding="2dp"
+                app:srcCompat="@drawable/no_image"/>
+
+            <Button
+                android:id="@+id/btn_choose_photo_fm"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="20dp"
+                android:text="Pilih Foto" />
+
+            <TextView
+                android:id="@+id/lbl_material_id_fm"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Material ID" />
+
+            <EditText
+                android:id="@+id/et_material_id_fm"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/edit_text_style"
+                android:ems="10"
+                android:hint="ID Material"
+                android:inputType="textPersonName"
+                android:minHeight="48dp"
+                android:paddingLeft="10dp"
+                android:paddingTop="5dp"
+                android:paddingRight="10dp"
+                android:paddingBottom="5dp" />
+
+            <TextView
+                android:id="@+id/lbl_name_fm"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Nama" />
+
+            <EditText
+                android:id="@+id/et_name_fm"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/edit_text_style"
+                android:ems="10"
+                android:hint="Nama Material"
+                android:inputType="textPersonName"
+                android:minHeight="48dp"
+                android:paddingLeft="10dp"
+                android:paddingTop="5dp"
+                android:paddingRight="10dp"
+                android:paddingBottom="5dp" />
+
+            <TextView
+                android:id="@+id/lbl_kmin_fm"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="K-Min" />
+
+            <EditText
+                android:id="@+id/et_kmin_fm"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/edit_text_style"
+                android:ems="10"
+                android:hint="Stok K-min"
+                android:inputType="numberDecimal"
+                android:minHeight="48dp"
+                android:paddingLeft="10dp"
+                android:paddingTop="5dp"
+                android:paddingRight="10dp"
+                android:paddingBottom="5dp" />
+
+            <TextView
+                android:id="@+id/lbl_kmax_fm"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="K-Max" />
+
+            <EditText
+                android:id="@+id/et_kmax_fm"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/edit_text_style"
+                android:ems="10"
+                android:hint="Stok K-max"
+                android:inputType="numberDecimal"
+                android:minHeight="48dp"
+                android:paddingLeft="10dp"
+                android:paddingTop="5dp"
+                android:paddingRight="10dp"
+                android:paddingBottom="5dp" />
+
+            <Button
+                android:id="@+id/btn_save_fm"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginBottom="10dp"
+                android:text="Simpan" />
+
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>

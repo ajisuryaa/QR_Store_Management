@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Seni-digital/APK Skripsi/app/src/main/res/drawable/edit_text_style.xml" value="0.175" />
+        <entry key="..\:/Seni-digital/APK Skripsi/app/src/main/res/drawable/round_btn.xml" value="0.175" />
+        <entry key="..\:/Seni-digital/APK Skripsi/app/src/main/res/layout/activity_form_material.xml" value="0.10764944275582573" />
+        <entry key="..\:/Seni-digital/APK Skripsi/app/src/main/res/layout/activity_home_admin.xml" value="0.16363636008964105" />
+        <entry key="..\:/Seni-digital/APK Skripsi/app/src/main/res/layout/activity_home_employee.xml" value="0.1" />
+        <entry key="..\:/Seni-digital/APK Skripsi/app/src/main/res/layout/activity_main.xml" value="0.2727272668160684" />
+        <entry key="..\:/Seni-digital/APK Skripsi/app/src/main/res/layout/activity_profile_account_page.xml" value="0.2727272668160684" />
+        <entry key="..\:/Seni-digital/APK Skripsi/app/src/main/res/layout/list_level_account.xml" value="0.2727272668160684" />
+        <entry key="..\:/Seni-digital/APK Skripsi/app/src/main/res/menu/back_menu.xml" value="0.11018518518518519" />
+        <entry key="..\:/Seni-digital/APK Skripsi/app/src/main/res/menu/search_menu.xml" value="0.11018518518518519" />
+        <entry key="..\:/Seni-digital/APK Skripsi/app/src/main/res/menu/search_menu_home_admin.xml" value="0.2727272668160684" />
+        <entry key="..\:/Seni-digital/APK Skripsi/app/src/main/res/menu/search_menu_home_employee.xml" value="0.22135416666666666" />
+        <entry key="..\:/Seni-digital/QR_STORE/app/src/main/res/drawable-v24/custom_btn_blue.xml" value="0.12135416666666667" />
+        <entry key="..\:/Seni-digital/QR_STORE/app/src/main/res/drawable-xhdpi/image_view_style.xml" value="0.12447916666666667" />
+        <entry key="..\:/Seni-digital/QR_STORE/app/src/main/res/drawable/custom_btn_blue.xml" value="0.12135416666666667" />
+        <entry key="..\:/Seni-digital/QR_STORE/app/src/main/res/drawable/custom_btn_red.xml" value="0.12447916666666667" />
+        <entry key="..\:/Seni-digital/QR_STORE/app/src/main/res/drawable/custom_btn_yellow.xml" value="0.12447916666666667" />
+        <entry key="..\:/Seni-digital/QR_STORE/app/src/main/res/drawable/custom_circular_image.xml" value="0.12708333333333333" />
+        <entry key="..\:/Seni-digital/QR_STORE/app/src/main/res/drawable/ic_edit_white.xml" value="0.12447916666666667" />
+        <entry key="..\:/Seni-digital/QR_STORE/app/src/main/res/drawable/ic_warning_red.xml" value="0.1" />
+        <entry key="..\:/Seni-digital/QR_STORE/app/src/main/res/layout/activity_employee_page.xml" value="0.21818181345285476" />
+        <entry key="..\:/Seni-digital/QR_STORE/app/src/main/res/layout/activity_form_employee_page.xml" value="0.23999999479814021" />
+        <entry key="..\:/Seni-digital/QR_STORE/app/src/main/res/layout/activity_form_material.xml" value="0.10764944275582573" />
+        <entry key="..\:/Seni-digital/QR_STORE/app/src/main/res/layout/activity_form_material_page.xml" value="0.15272726941699832" />
+        <entry key="..\:/Seni-digital/QR_STORE/app/src/main/res/layout/activity_home_admin.xml" value="0.1" />
+        <entry key="..\:/Seni-digital/QR_STORE/app/src/main/res/layout/activity_home_employee.xml" value="0.1" />
+        <entry key="..\:/Seni-digital/QR_STORE/app/src/main/res/layout/activity_log_employee.xml" value="0.14214046822742474" />
+        <entry key="..\:/Seni-digital/QR_STORE/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/Seni-digital/QR_STORE/app/src/main/res/layout/activity_profile_account_page.xml" value="0.10764944275582573" />
+        <entry key="..\:/Seni-digital/QR_STORE/app/src/main/res/layout/activity_spinner_value_position_employee.xml" value="0.1" />
+        <entry key="..\:/Seni-digital/QR_STORE/app/src/main/res/layout/card_list_employee.xml" value="0.23999999479814021" />
+        <entry key="..\:/Seni-digital/QR_STORE/app/src/main/res/layout/card_list_history.xml" value="0.35999999219721035" />
+        <entry key="..\:/Seni-digital/QR_STORE/app/src/main/res/layout/card_list_material.xml" value="0.35999999219721035" />
+        <entry key="..\:/Seni-digital/QR_STORE/app/src/main/res/layout/card_list_material_employee.xml" value="0.21818181345285476" />
+        <entry key="..\:/Seni-digital/QR_STORE/app/src/main/res/layout/submit_material_out.xml" value="0.14214046822742474" />
+        <entry key="..\:/Seni-digital/QR_STORE/app/src/main/res/menu/back_menu.xml" value="0.14358108108108109" />
+        <entry key="..\:/Seni-digital/QR_STORE/app/src/main/res/menu/employee_page.xml" value="0.10833333333333334" />
+        <entry key="..\:/Seni-digital/QR_STORE/app/src/main/res/menu/menu_choose_image.xml" value="0.21388888888888888" />
+        <entry key="..\:/Seni-digital/QR_STORE/app/src/main/res/menu/menu_login.xml" value="0.14358108108108109" />
+        <entry key="..\:/Seni-digital/QR_STORE/app/src/main/res/menu/search_menu_home_admin.xml" value="0.21388888888888888" />
+        <entry key="..\:/Seni-digital/QR_STORE/app/src/main/res/menu/search_menu_home_employee.xml" value="0.21388888888888888" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

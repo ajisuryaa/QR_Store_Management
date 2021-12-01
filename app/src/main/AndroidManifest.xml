@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.putrabatam.qrstore">
+
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="true" />
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.QRStore"
+        android:usesCleartextTraffic="true">
+        <activity
+            android:name=".view.Log_Activity_Employee"
+            android:exported="false"
+            android:label="Log Aktifitas"/>
+        <activity
+            android:name=".view.Form_Material_Page"
+            android:exported="true"
+            android:label="Form Material" />
+        <activity
+            android:name=".view.Form_Employee_Page"
+            android:exported="true"
+            android:label="Form Pegawai" />
+        <activity
+            android:name=".view.Profile_Account_Page"
+            android:exported="true"
+            android:label="Profile" />
+        <activity
+            android:name=".view.Employee_Page"
+            android:exported="true"
+            android:label="Daftar Pegawai" />
+        <activity
+            android:name=".view.Home_Employee"
+            android:exported="true"
+            android:label="Beranda"></activity>
+        <activity
+            android:name="info.vividcode.android.zxing.CaptureActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="landscape"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
+            android:windowSoftInputMode="stateAlwaysHidden">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.google.zxing.client.android.SCAN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".view.Home_Admin"
+            android:exported="true"
+            android:label="Beranda" />
+        <activity
+            android:name=".view.MainActivity"
+            android:exported="true"
+            android:theme="@style/Theme.AppCompat.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
