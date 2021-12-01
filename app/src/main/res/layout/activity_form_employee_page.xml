@@ -22,8 +22,7 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/image_view_style"
-                android:padding="5dp"
-                android:scaleType="centerCrop"
+                android:padding="2dp"
                 app:srcCompat="@drawable/no_image" />
 
             <Button

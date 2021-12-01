@@ -53,6 +53,8 @@ import com.putrabatam.qrstore.util.RequestHandler;
 import com.putrabatam.qrstore.util.Server_Configuration;
 import com.putrabatam.qrstore.util.Spinner_Employee_Position_Adapter;
 import com.putrabatam.qrstore.util.VolleyMultipartRequest;
+import com.squareup.picasso.MemoryPolicy;
+import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
 
@@ -162,22 +164,12 @@ public class Form_Employee_Page extends AppCompatActivity implements PopupMenu.O
             } else{
                 position.setSelection(1);
             }
-            Picasso.get().load(data.getStringExtra("photo")).into(new Target() {
-                @Override
-                public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
-                    // Set it in the ImageView
-                    string_image = ImageHandler.BitMapToString(bitmap);
-                    avatar_image.setImageBitmap(bitmap);
-                }
-
-                @Override
-                public void onBitmapFailed(Exception e, Drawable errorDrawable) {
-                    //
-                }
-                @Override
-                public void onPrepareLoad(Drawable placeHolderDrawable) {
-                }
-            });
+            Picasso.get()
+                    .load(data.getStringExtra("photo"))
+                    .memoryPolicy(MemoryPolicy.NO_CACHE)
+                    .networkPolicy(NetworkPolicy.NO_CACHE)
+                    .resize(300,300).centerCrop()
+                    .into(avatar_image);
             password.setText(data.getStringExtra("password"));
             confirmation_password.setText(data.getStringExtra("password"));
         }
@@ -356,24 +348,39 @@ public class Form_Employee_Page extends AppCompatActivity implements PopupMenu.O
                         String selectedImagePath = getPath(getApplicationContext(), fileUri);
                         if (selectedImagePath != "Not found") {
                             ContentResolver contentResolver = getContentResolver();
-
-                            try {
-                                // Open the file input stream by the uri.
-                                InputStream inputStream = contentResolver.openInputStream(fileUri);
-
-                                // Get the bitmap.
-                                Bitmap imgBitmap = BitmapFactory.decodeStream(inputStream);
-                                Bitmap scaledBitmap = scaleDown(imgBitmap, 300, true);
-                                avatar_image.setImageBitmap(scaledBitmap);
-                                inputStream.close();
-                            } catch (FileNotFoundException ex) {
-                                Log.e("FAILED", ex.getMessage(), ex);
-                            } catch (IOException ex) {
-                                Log.e("FAILED", ex.getMessage(), ex);
-                            }
+                            Picasso.get()
+                                    .load(fileUri)
+                                    .memoryPolicy(MemoryPolicy.NO_CACHE)
+                                    .networkPolicy(NetworkPolicy.NO_CACHE)
+                                    .resize(300,300).centerCrop()
+                                    .into(avatar_image);
                         }
                     } else{
                         Log.e("Failed", "Failed Load Image From Camera!");
+                    }
+                }
+            });
+
+    ActivityResultLauncher<Intent> DirectoryActivityResultLauncher = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            new ActivityResultCallback<ActivityResult>() {
+                @Override
+                public void onActivityResult(ActivityResult result) {
+                    if (result.getResultCode() == RESULT_OK) {
+                        Intent data = result.getData();
+                        Uri fileUri = data.getData();
+                        String selectedImagePath = getPath(getApplicationContext(), fileUri);
+                        if (selectedImagePath != "Not found") {
+                            ContentResolver contentResolver = getContentResolver();
+                            Picasso.get()
+                                    .load(fileUri)
+                                    .memoryPolicy(MemoryPolicy.NO_CACHE)
+                                    .networkPolicy(NetworkPolicy.NO_CACHE)
+                                    .resize(300,300).centerCrop()
+                                    .into(avatar_image);
+                        }
+                    } else{
+                        Log.e("Failed", "Failed Load Image From Directory!");
                     }
                 }
             });
@@ -385,7 +392,8 @@ public class Form_Employee_Page extends AppCompatActivity implements PopupMenu.O
                 openCamera();
                 return true;
             case R.id.choose_folder:
-
+                Intent gallery_intent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                DirectoryActivityResultLauncher.launch(gallery_intent);
                 return true;
             default:
                 return false;
