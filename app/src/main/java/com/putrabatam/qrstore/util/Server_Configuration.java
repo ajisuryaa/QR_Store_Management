@@ -2,12 +2,12 @@ package com.putrabatam.qrstore.util;
 
 public class Server_Configuration {
     //local_server
-    //public static final String address_server = "https://192.168.1.13/API_STORE_MANAGEMENT/view/";
-    //public static final String address_image = "http://192.168.1.13/API_STORE_MANAGEMENT/";
+    public static final String address_server = "http://192.168.163.58/API_STORE_MANAGEMENT/view/";
+    public static final String address_image = "http://192.168.163.58/API_STORE_MANAGEMENT/";
 
     //hosting_server
-    public static final String address_server = "https://qrstoreapps.000webhostapp.com/view/";
-    public static final String address_image = "https://qrstoreapps.000webhostapp.com/";
+//    public static final String address_server = "https://qrstoreapps.000webhostapp.com/view/";
+//    public static final String address_image = "https://qrstoreapps.000webhostapp.com/";
 
     public static final String address_login = address_server + "login.php";
 
