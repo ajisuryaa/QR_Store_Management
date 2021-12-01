@@ -1,0 +1,1 @@
+"# QR Store Management Apps" 
