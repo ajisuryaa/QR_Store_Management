@@ -1,8 +1,17 @@
 package com.putrabatam.qrstore.view;
 
+import static com.putrabatam.qrstore.util.ImageHandler.getPath;
+import static com.putrabatam.qrstore.util.ImageHandler.scaleDown;
+
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
+import android.content.ContentResolver;
+import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -42,6 +51,8 @@ import com.putrabatam.qrstore.util.PopUpMessage;
 import com.putrabatam.qrstore.util.RequestHandler;
 import com.putrabatam.qrstore.util.Server_Configuration;
 import com.putrabatam.qrstore.util.VolleyMultipartRequest;
+import com.squareup.picasso.MemoryPolicy;
+import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
 
@@ -53,6 +64,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.HashMap;
 import java.util.Map;
@@ -67,6 +79,8 @@ public class Form_Material_Page extends AppCompatActivity implements PopupMenu.O
     private String string_image="";
     EditText id_material, name_material, kmin_material, kmax_material;
     Button Save, choose_photo;
+
+    Uri image_uri;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -121,6 +135,17 @@ public class Form_Material_Page extends AppCompatActivity implements PopupMenu.O
                 popup.show();
             }
         });
+    }
+
+    private void openCamera() {
+        ContentValues values = new ContentValues();
+        values.put(MediaStore.Images.Media.TITLE, "New Picture");
+        values.put(MediaStore.Images.Media.DESCRIPTION, "From the Camera");
+        image_uri = getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
+        //Camera intent
+        Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, image_uri);
+        CameraActivityResultLauncher.launch(cameraIntent);
     }
 
     private void set_form_page(Intent form_page){
@@ -281,14 +306,12 @@ public class Form_Material_Page extends AppCompatActivity implements PopupMenu.O
     public boolean onMenuItemClick(MenuItem menuItem) {
         switch (menuItem.getItemId()) {
             case R.id.choose_camera:
-                Intent choose_camera = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                File f = new File(android.os.Environment.getExternalStorageDirectory(), "temp.jpg");
-                choose_camera.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(f));
-                startActivityForResult(choose_camera, REQUEST_IMAGE_CAPTURE);
+                openCamera();
                 return true;
             case R.id.choose_folder:
-                Intent choose_folder = new   Intent(Intent.ACTION_PICK,android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                startActivityForResult(choose_folder, REQUEST_IMAGE_GALLERY);
+                Intent gallery_intent = new Intent(Intent.ACTION_PICK,
+                        android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                DirectoryActivityResultLauncher.launch(gallery_intent);
                 return true;
             default:
                 return false;
@@ -296,67 +319,57 @@ public class Form_Material_Page extends AppCompatActivity implements PopupMenu.O
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == RESULT_OK) {
-            if (requestCode == 1) {
-                File f = new File(Environment.getExternalStorageDirectory().toString());
-                for (File temp : f.listFiles()) {
-                    if (temp.getName().equals("temp.jpg")) {
-                        f = temp;
-                        break;
-                    }
-                }
-                try {
-                    Bitmap bitmap;
-                    BitmapFactory.Options bitmapOptions = new BitmapFactory.Options();
-                    bitmap = BitmapFactory.decodeFile(f.getAbsolutePath(), bitmapOptions);
-                    bitmap= ImageHandler.getResizedBitmap(bitmap, 400);
-                    material_photo.setImageBitmap(bitmap);
-                    string_image = ImageHandler.BitMapToString(bitmap);
-                    String path = android.os.Environment
-                            .getExternalStorageDirectory()
-                            + File.separator
-                            + "Phoenix" + File.separator + "default";
-                    f.delete();
-                    OutputStream outFile = null;
-                    File file = new File(path, String.valueOf(System.currentTimeMillis()) + ".jpg");
-                    try {
-                        outFile = new FileOutputStream(file);
-                        bitmap.compress(Bitmap.CompressFormat.JPEG, 85, outFile);
-                        outFile.flush();
-                        outFile.close();
-                    } catch (FileNotFoundException e) {
-                        e.printStackTrace();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            } else if (requestCode == 2) {
-                Uri selectedImage = data.getData();
-                String[] filePath = { MediaStore.Images.Media.DATA };
-                Cursor c = getContentResolver().query(selectedImage,filePath, null, null, null);
-                c.moveToFirst();
-                int columnIndex = c.getColumnIndex(filePath[0]);
-                String picturePath = c.getString(columnIndex);
-                c.close();
-                Bitmap thumbnail = (BitmapFactory.decodeFile(picturePath));
-                thumbnail= ImageHandler.getResizedBitmap(thumbnail, 400);
-                Log.w("path of image from gallery......******************.........", picturePath+"");
-                material_photo.setImageBitmap(thumbnail);
-                string_image = ImageHandler.BitMapToString(thumbnail);
-            }
-        }
-    }
-    @Override
     public void onBackPressed() {
         super.onBackPressed();
         Intent back = new Intent(Form_Material_Page.this, Home_Admin.class);
         startActivity(back);
         finish();
     }
+
+    ActivityResultLauncher<Intent> CameraActivityResultLauncher = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            new ActivityResultCallback<ActivityResult>() {
+                @Override
+                public void onActivityResult(ActivityResult result) {
+                    if (result.getResultCode() == RESULT_OK) {
+                        Uri fileUri = image_uri;
+                        String selectedImagePath = getPath(getApplicationContext(), fileUri);
+                        if (selectedImagePath != "Not found") {
+                            ContentResolver contentResolver = getContentResolver();
+                            Picasso.get()
+                                    .load(fileUri)
+                                    .memoryPolicy(MemoryPolicy.NO_CACHE)
+                                    .networkPolicy(NetworkPolicy.NO_CACHE)
+                                    .resize(300,300).centerCrop()
+                                    .into(material_photo);
+                        }
+                    } else{
+                        Log.e("Failed", "Failed Load Image From Camera!");
+                    }
+                }
+            });
+
+    ActivityResultLauncher<Intent> DirectoryActivityResultLauncher = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            new ActivityResultCallback<ActivityResult>() {
+                @Override
+                public void onActivityResult(ActivityResult result) {
+                    if (result.getResultCode() == RESULT_OK) {
+                        Intent data = result.getData();
+                        Uri fileUri = data.getData();
+                        String selectedImagePath = getPath(getApplicationContext(), fileUri);
+                        if (selectedImagePath != "Not found") {
+                            ContentResolver contentResolver = getContentResolver();
+                            Picasso.get()
+                                    .load(fileUri)
+                                    .memoryPolicy(MemoryPolicy.NO_CACHE)
+                                    .networkPolicy(NetworkPolicy.NO_CACHE)
+                                    .resize(300,300).centerCrop()
+                                    .into(material_photo);
+                        }
+                    } else{
+                        Log.e("Failed", "Failed Load Image From Directory!");
+                    }
+                }
+            });
 }

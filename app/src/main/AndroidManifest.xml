@@ -32,7 +32,7 @@
         <activity
             android:name=".view.Form_Employee_Page"
             android:exported="true"
-            android:label="Form Pegawai" />
+            android:label="Form Karyawan" />
         <activity
             android:name=".view.Profile_Account_Page"
             android:exported="true"
@@ -40,7 +40,7 @@
         <activity
             android:name=".view.Employee_Page"
             android:exported="true"
-            android:label="Daftar Pegawai" />
+            android:label="Daftar Karyawan" />
         <activity
             android:name=".view.Home_Employee"
             android:exported="true"

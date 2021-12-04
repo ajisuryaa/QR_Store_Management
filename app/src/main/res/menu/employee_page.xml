@@ -3,5 +3,5 @@
 
     <item
         android:id="@+id/menu_add_new_employee"
-        android:title="Tambah Pegawai" />
+        android:title="Tambah Karyawan" />
 </menu>
