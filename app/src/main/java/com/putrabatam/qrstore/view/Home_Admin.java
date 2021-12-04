@@ -4,9 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.Manifest;
 import android.app.ProgressDialog;
 import android.app.SearchManager;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -55,6 +58,7 @@ public class Home_Admin extends AppCompatActivity {
         recyclerView = findViewById(R.id.rv_list_material_ha);
         adapter = new Card_List_Material(showListMaterial);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(Home_Admin.this);
+        check_permission();
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
         recyclerView.setActivated(true);
@@ -195,6 +199,21 @@ public class Home_Admin extends AppCompatActivity {
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
+        }
+    }
+    void check_permission(){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+            if (checkSelfPermission(Manifest.permission.CAMERA) ==
+                    PackageManager.PERMISSION_DENIED ||
+                    checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) ==
+                            PackageManager.PERMISSION_DENIED){
+                //permission not enabled, request it
+                String[] permission = {Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE};
+                //show popup to request permissions
+                requestPermissions(permission, 1000);
+            }
+            else {
+            }
         }
     }
 }
