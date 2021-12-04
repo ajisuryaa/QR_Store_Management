@@ -100,7 +100,7 @@ public class Card_List_Employee extends RecyclerView.Adapter<Card_List_Employee.
     public void Delete_Employee(String badge_number, Context context){
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setTitle("Pesan Konfirmasi")
-                .setMessage("Apakah anda yakin ingin menghapus pegawai " + badge_number + "?")
+                .setMessage("Apakah anda yakin ingin menghapus karyawan " + badge_number + "?")
                 .setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -127,7 +127,7 @@ public class Card_List_Employee extends RecyclerView.Adapter<Card_List_Employee.
                     public void onResponse(String ServerResponse) {
                         try {
                             JSONObject obj = new JSONObject(ServerResponse);
-                            Log.i("Hapus pegawai: ", ServerResponse);
+                            Log.i("Hapus karyawan: ", ServerResponse);
                             boolean status = obj.getBoolean("status");
                             JSONObject data = new JSONObject(obj.getString("data"));
                             Toast.makeText(context, "Berhasil menghapus material " + data.getString("id_employee"), Toast.LENGTH_LONG).show();

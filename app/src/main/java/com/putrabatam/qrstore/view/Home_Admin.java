@@ -113,8 +113,6 @@ public class Home_Admin extends AppCompatActivity {
                             progressDialog.dismiss();
                             e.printStackTrace();
                         }
-                        Log.i("Jumlah Material", String.valueOf(showListMaterial.size()));
-                        Log.i("Value Name", showListMaterial.get(0).name);
                         adapter.notifyDataSetChanged();
                     }
                 },
