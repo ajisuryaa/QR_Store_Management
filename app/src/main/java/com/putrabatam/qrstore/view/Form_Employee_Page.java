@@ -159,7 +159,7 @@ public class Form_Employee_Page extends AppCompatActivity implements PopupMenu.O
             badge_id.setEnabled(false);
             badge_id.setText(data.getStringExtra("badge_number"));
             name.setText(data.getStringExtra("name"));
-            if(data.getStringExtra("position").equals("Waterspider")){
+            if(data.getStringExtra("position").equals("MH")){
                 position.setSelection(0);
             } else{
                 position.setSelection(1);
