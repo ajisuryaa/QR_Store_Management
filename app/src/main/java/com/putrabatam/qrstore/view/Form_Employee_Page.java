@@ -257,6 +257,7 @@ public class Form_Employee_Page extends AppCompatActivity implements PopupMenu.O
                         progressDialog.dismiss();
                         try {
                             JSONObject obj = new JSONObject(new String(response.data));
+                            Log.i("Return Add Employee", response.data.toString());
                             if(obj.getBoolean("status")){
                                 Toast.makeText(Form_Employee_Page.this,
                                         obj.getString("message"), Toast.LENGTH_LONG).show();

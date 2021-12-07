@@ -48,7 +48,11 @@ public class Profile_Account_Page extends AppCompatActivity {
 
     void set_profile(){
         name.setText(sharedpreferences.getString("name", ""));
-        position.setText(sharedpreferences.getString("type_account", ""));
+        if(sharedpreferences.getString("type_account", "employee").equals("employee")){
+            position.setText(sharedpreferences.getString("employee_position", ""));
+        } else{
+            position.setText("administrator");
+        }
     }
 
     @Override

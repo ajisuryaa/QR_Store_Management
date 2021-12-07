@@ -86,6 +86,8 @@ public class Home_Employee extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
         recyclerView.setActivated(true);
+
+        setTitle(sharedpreferences.getString("employee_position", ""));
         Get_List_Material();
 
         scanQR.setOnClickListener(new View.OnClickListener() {

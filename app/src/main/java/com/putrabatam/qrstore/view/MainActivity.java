@@ -76,6 +76,7 @@ public class MainActivity extends AppCompatActivity {
             data_akun.setPassword(setting.getString("password", ""));
             data_akun.setPhoto(setting.getString("photo", ""));
             data_akun.setType_account(setting.getString("type_account", ""));
+            data_akun.setType_account(setting.getString("employee_position", ""));
             Log.e("Session Username: ", data_akun.getUsername());
             Log.e("Session Password: ", data_akun.getPassword());
             login_account(data_akun);
@@ -118,7 +119,6 @@ public class MainActivity extends AppCompatActivity {
                             reqHandler.parseDataObject(new JSONObject(ServerResponse));
                             String message = reqHandler.message;
                             if(reqHandler.status){
-                                //set_session(data_akun);
                                 SharedPreferencesManager shared = new SharedPreferencesManager();
                                 JSONObject obj = reqHandler.data_object;
                                 data_akun.setName(obj.getString("name"));
